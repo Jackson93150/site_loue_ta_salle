@@ -1,0 +1,58 @@
+*
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #ffdcda;
+}
+
+.grid-container {
+  display: grid;
+  gap: 50px 50px;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(109, 109, 109, 0.541);
+  border-radius: 5px;
+  box-shadow: 5px;
+  padding: 10px;
+  font-size: 30px;
+  text-align: center;
+  width: 11em;
+}
+
+.img-salle{
+    height: 7em;
+    width: 10em;
+}
+
+.description{
+    font-size: 12px;
+    height: 80px;
+}
+
+.item{
+    display: inline-block;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding:0px 20px;
+}
+
+.reserv-date{
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+}
