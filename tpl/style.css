@@ -13,7 +13,7 @@ body
     flex-wrap: wrap;
     min-height: 100vh;
     width: 100vw;
-    background-color: #ffdcda;
+    background-color: #ffffff;
 }
 
 .grid-container {
@@ -39,6 +39,7 @@ body
     width: 10em;
 }
 
+
 .description{
     font-size: 12px;
     height: 80px;
@@ -55,4 +56,8 @@ body
     width: 100%;
     font-size: 12px;
     text-align: left;
+}
+
+.line{
+    border: 1px solid rgba(119, 119, 119, 0.596);
 }

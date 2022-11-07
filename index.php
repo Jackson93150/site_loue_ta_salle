@@ -20,25 +20,43 @@ $slotres = $slot->fetchAll();
     <link rel="stylesheet" href="./tpl/style.css" />
 </head>
 <body>
+    <script>
+        function reply_click(clicked_id,clicked_id2)
+        {
+            let click = clicked_id;
+            document.cookie = "selected="+click;
+            let click2 = clicked_id2;
+            console.log(click2);
+            document.cookie = "selected2="+click2;
+            location.href = 'reserv.php';
+            
+        }
+    </script>
     <div class="grid-container">
         <?php
             foreach($slotres as $slot):
+                if($slot['status'] == 'libre'):
         ?>
         <div class="grid-item">
             <?php 
                 foreach($result as $room):
-                    if($room['id'] == $slot['room_id']):             
+                    if($room['id'] == $slot['room_id']):
             ?>
-            <img class="img-salle" src= <?= $room['picture_url'] ?>>
+            <img class="img-salle" onclick="reply_click(this.id,this.alt)" alt="<?= $slot['id'] ?>" id="<?= $room['id'] ?>"  src= <?= $room['picture_url'] ?> style="cursor: pointer;">
             <div class="flexing">
                 <h5 class="item" style="color:cornflowerblue;"><?= $room['name'] ?></h5>
                 <h5 class="item"><?= $slot['price'] ?>€</h5>
             </div>
             <p class="description"><?= $room['description']?></p>
-            <?php endif; endforeach; ?>
             <h6 class="reserv-date"><?= $slot['arrival_date'] ?> au <?= $slot['departure_date'] ?></h6>
+            <div class="line"></div>
+            <div class="flex">
+                <img class="item1" src="https://www.pngall.com/wp-content/uploads/4/5-Star-Rating-PNG-File.png" style="height:25px;padding:0px 40px;">
+                <img class="item2" onclick="reply_click(this.id,this.alt)" alt="<?= $slot['id'] ?>" id="<?= $room['id'] ?>" src="https://icones.pro/wp-content/uploads/2021/06/icone-loupe-bleu.png" style="height:25px;padding:0px 30px;cursor: pointer;">
+            </div>
+            <?php endif; endforeach; ?>
         </div>
-        <?php endforeach; ?>
+        <?php endif;endforeach; ?>
     </div>
 </body>
 </html>
