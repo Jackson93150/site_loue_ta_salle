@@ -22,6 +22,18 @@ $valuepass2 = $_COOKIE['selected2'];
     <link rel="stylesheet" href="./tpl/style2.css" />
 </head>
 <body>
+    <script>
+        function reply_click(clicked_id,clicked_id2)
+        {
+            let click = clicked_id;
+            document.cookie = "selected="+click;
+            let click2 = clicked_id2;
+            console.log(click2);
+            document.cookie = "selected2="+click2;
+            location.href = 'reserv.php';
+            
+        }
+    </script>
     <?php 
         foreach($result as $room):
             if($room['id'] == $valuepass):
@@ -80,7 +92,7 @@ $valuepass2 = $_COOKIE['selected2'];
                                 if($room['id'] == $slot['room_id']):
                                     $cmpt = $cmpt-1;
             ?>
-            <img class="salle" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;" src= <?= $room['picture_url'] ?>>
+            <img class="salle" onclick="reply_click(this.id,this.alt)" alt="<?= $slot['id'] ?>" id="<?= $room['id'] ?>" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;cursor: pointer;" src= <?= $room['picture_url'] ?>>
             <?php endif;endforeach;endif;endif;endforeach; ?>
         </div>
         <?php endif; endforeach; ?>
