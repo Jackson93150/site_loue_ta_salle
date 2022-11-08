@@ -43,15 +43,47 @@ $valuepass2 = $_COOKIE['selected2'];
                     foreach($slotres as $slot):
                         if($slot['id'] == $valuepass2):
                 ?>
-                <p style="font-size: 18px;margin-top: 10px;">Arrivée : <?= $slot['arrival_date'] ?></p>
-                <p style="font-size: 18px;margin-top: 10px;">Départ : <?= $slot['departure_date'] ?></p>
+                <?php 
+                    setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
+                    $timestampArrival = strtotime($slot['arrival_date']);
+                    $timestampArrival = ucfirst(strftime("%A %d %B %Y", $timestampArrival));
+                    $timestampDeparture = strtotime($slot['departure_date']);
+                    $timestampDeparture = ucfirst(strftime("%A %d %B %Y", $timestampDeparture));
+                ?>
+                <p style="font-size: 18px;margin-top: 10px;">Arrivée : <?= $timestampArrival ?></p>
+                <p style="font-size: 18px;margin-top: 10px;">Départ : <?= $timestampDeparture ?></p>
                 <p style="font-size: 18px;margin-top: 10px;">Capacité : <?= $room['capacity'] ?></p>
                 <p style="font-size: 18px;margin-top: 10px;">Catégory : <?= $room['category'] ?></p>
                 <p style="font-size: 18px;margin-top: 10px;">Adresse : <?= $room['address'] ?></p>
                 <p style="font-size: 18px;margin-top: 10px;">Tarif : <?= $slot['price']?> €</p>
-                <?php endif; endforeach; ?>
             </div>
         </div>
+        <div>
+            <h1 class="city">Autres Produits à <?= $room['city'] ?></h1>
+        </div>
+        <div class="line"></div>
+        <div class="flex_similar">
+            <?php
+                $rst = $room['city'];
+                $idarray = array();
+                foreach($result as $room):
+                    if($room['city'] == $rst):
+                        array_push($idarray,$room['id']);
+            ?>
+            <?php endif; endforeach; ?>
+            <?php 
+                $cmpt = 4;
+                foreach($slotres as $slot):
+                    if($slot['status'] == 'libre' && $cmpt != 0):
+                        if($slot['room_id'] == $idarray[0] or $slot['room_id'] == $idarray[1]):
+                            foreach($result as $room):
+                                if($room['id'] == $slot['room_id']):
+                                    $cmpt = $cmpt-1;
+            ?>
+            <img class="salle" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;" src= <?= $room['picture_url'] ?>>
+            <?php endif;endforeach;endif;endif;endforeach; ?>
+        </div>
+        <?php endif; endforeach; ?>
     </div>
     <?php endif; endforeach; ?>
 </body>

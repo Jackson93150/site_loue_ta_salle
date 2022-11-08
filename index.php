@@ -42,13 +42,20 @@ $slotres = $slot->fetchAll();
                 foreach($result as $room):
                     if($room['id'] == $slot['room_id']):
             ?>
+            <?php 
+                setlocale(LC_ALL, 'fr_FR.UTF8', 'fr_FR','fr','fr','fra','fr_FR@euro');
+                $timestampArrival = strtotime($slot['arrival_date']);
+                $timestampArrival = ucfirst(strftime(" %d %B %Y", $timestampArrival));
+                $timestampDeparture = strtotime($slot['departure_date']);
+                $timestampDeparture = ucfirst(strftime(" %d %B %Y", $timestampDeparture));
+            ?>
             <img class="img-salle" onclick="reply_click(this.id,this.alt)" alt="<?= $slot['id'] ?>" id="<?= $room['id'] ?>"  src= <?= $room['picture_url'] ?> style="cursor: pointer;">
             <div class="flexing">
                 <h5 class="item" style="color:cornflowerblue;"><?= $room['name'] ?></h5>
                 <h5 class="item"><?= $slot['price'] ?>€</h5>
             </div>
             <p class="description"><?= $room['description']?></p>
-            <h6 class="reserv-date"><?= $slot['arrival_date'] ?> au <?= $slot['departure_date'] ?></h6>
+            <h6 class="reserv-date"><?= $timestampArrival ?> au <?= $timestampDeparture ?></h6>
             <div class="line"></div>
             <div class="flex">
                 <img class="item1" src="https://www.pngall.com/wp-content/uploads/4/5-Star-Rating-PNG-File.png" style="height:25px;padding:0px 40px;">
