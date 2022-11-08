@@ -6,7 +6,7 @@ require_once('./tpl/init.php');
 $room = $pdo->query('SELECT * FROM room');
 $result = $room->fetchAll();
 
-$slot = $pdo ->query("SELECT * FROM slot");
+$slot = $pdo ->query("SELECT * FROM slot WHERE `status` LIKE 'libre'");
 $slotres = $slot->fetchAll();
 
 ?>
@@ -35,7 +35,6 @@ $slotres = $slot->fetchAll();
     <div class="grid-container">
         <?php
             foreach($slotres as $slot):
-                if($slot['status'] == 'libre'):
         ?>
         <div class="grid-item">
             <?php 
@@ -63,7 +62,7 @@ $slotres = $slot->fetchAll();
             </div>
             <?php endif; endforeach; ?>
         </div>
-        <?php endif;endforeach; ?>
+        <?php endforeach; ?>
     </div>
 </body>
 </html>

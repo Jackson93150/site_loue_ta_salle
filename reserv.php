@@ -6,7 +6,7 @@ require_once('./tpl/init.php');
 $room = $pdo->query('SELECT * FROM room');
 $result = $room->fetchAll();
 
-$slot = $pdo ->query("SELECT * FROM slot");
+$slot = $pdo ->query("SELECT * FROM slot WHERE `status` LIKE 'libre'");
 $slotres = $slot->fetchAll();
 
 $valuepass = $_COOKIE['selected'];
@@ -85,15 +85,15 @@ $valuepass2 = $_COOKIE['selected2'];
             <?php endif; endforeach; ?>
             <?php 
                 $cmpt = 4;
-                foreach($slotres as $slot):
-                    if($slot['status'] == 'libre' && $cmpt != 0):
-                        if($slot['room_id'] == $idarray[0] or $slot['room_id'] == $idarray[1]):
-                            foreach($result as $room):
-                                if($room['id'] == $slot['room_id']):
-                                    $cmpt = $cmpt-1;
+                $room2 = $pdo->query("SELECT slot.*, room.picture_url FROM slot LEFT JOIN room ON slot.room_id = room.id WHERE room.city = '".$rst."' AND slot.status = 'libre'");
+                $result2 = $room2->fetchAll();
+
+                foreach($result2 as $room2):
+                    if($cmpt != 0):
+                        $cmpt = $cmpt-1;
             ?>
-            <img class="salle" onclick="reply_click(this.id,this.alt)" alt="<?= $slot['id'] ?>" id="<?= $room['id'] ?>" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;cursor: pointer;" src= <?= $room['picture_url'] ?>>
-            <?php endif;endforeach;endif;endif;endforeach; ?>
+            <img class="salle" onclick="reply_click(this.id,this.alt)" alt="<?= $room2['id'] ?>" id="<?= $room2['room_id'] ?>" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;cursor: pointer;" src= <?= $room2['picture_url'] ?>>
+            <?php endif;endforeach;?>
         </div>
         <?php endif; endforeach; ?>
     </div>
