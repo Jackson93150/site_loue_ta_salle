@@ -1,9 +1,12 @@
 <?php
-
 // Connexion a la BDD
-
-$pdo = new PDO('mysql:host=localhost;dbname=loutasale','root','root',array(
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
-));
-
+function initbdd() {
+    try{
+        return new PDO('mysql:host=localhost;dbname=loutasale','root','root',array(
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING,
+        ));
+    }catch (\Throwable $th) {
+        var_dump($th);
+      }
+}
 ?>
