@@ -7,17 +7,11 @@
     <link rel="stylesheet" href="./tpl/style.css" />
 </head>
 <body>
-    <script>
-        function reply_click(clicked_id,clicked_id2)
-        {
-            let click = clicked_id;
-            document.cookie = "selected="+click;
-            let click2 = clicked_id2;
-            console.log(click2);
-            document.cookie = "selected2="+click2;
-            location.href = 'reserv.php';
+    <?php 
+        if(isset($_POST['submit'])){
+            echo "ok";
         }
-    </script>
+    ?>
     <div class="grid-container">
         <?php
             foreach($slotres as $slot):
@@ -33,7 +27,7 @@
             ?>
             <a href="index.php?route=reservation&slotid=<?= $slot['id'] ?>&roomid=<?= $slot['room_id'] ?>"><img class="img-salle"src= <?= $slot['picture_url'] ?> style="cursor: pointer;"></a>
             <div class="flexing">
-                <h5 class="item" style="color:cornflowerblue;"><?= $slot['name'] ?></h5>
+            <a href="index.php?route=reservation&slotid=<?= $slot['id'] ?>&roomid=<?= $slot['room_id'] ?>"><h5 class="item" style="color:cornflowerblue;"><?= $slot['name'] ?></h5></a>
                 <h5 class="item"><?= $slot['price'] ?>€</h5>
             </div>
             <p class="description"><?= $slot['description']?></p>

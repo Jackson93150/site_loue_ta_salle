@@ -7,7 +7,6 @@ if (empty($_GET['route'])) $route = 'home';
 else $route = $_GET['route'];
 
 switch ($route) {
-
     case 'home':
         include_once __DIR__.'./controller/slotcontroller.php';
         getslots();

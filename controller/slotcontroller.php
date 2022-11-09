@@ -8,10 +8,10 @@ function getslots(){
 }
 
 function getdetail(){
-    $valuepass2 = $_GET['slotid'];
-    $slot = slotdetail($valuepass2);
+    $valuepass = $_GET['slotid'];
+    $slot = slotdetail($valuepass);
     $result2 = slotsimilar($slot['city']);
+    $comscres = commentandscore($slot['room_id']);
     require_once __DIR__.'/../view/roomslot/roomdetail.php';
 }
-
 ?>

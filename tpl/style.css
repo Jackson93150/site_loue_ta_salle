@@ -1,22 +1,79 @@
-*
-{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-body
-{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    min-height: 100vh;
-    width: 100vw;
-    background-color: #ffffff;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: #ffffff;
+}
+
+.topnav{
+    position: absolute;
+    top: 0;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+}
+
+/* Style the input container */
+.topnav .login-container {
+  float: right;
+}
+
+/* Style the input field inside the navbar */
+.topnav input[type="text"] {
+  padding: 6px;
+  margin-top: 8px;
+  font-size: 17px;
+  border: none;
+  width: 150px; /* adjust as needed (as long as it doesn't break the topnav) */
+}
+
+/* Style the button inside the input container */
+.topnav .login-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .login-container button:hover {
+  background: #ccc;
+}
+
+/* Add responsiveness - On small screens, display the navbar vertically instead of horizontally */
+@media screen and (max-width: 600px) {
+  .topnav .login-container {
+    float: none;
+  }
+  .topnav a,
+  .topnav input[type="text"],
+  .topnav .login-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
+  .topnav input[type="text"] {
+    border: 1px solid #ccc;
+  }
 }
 
 .grid-container {
+  margin-top: 100px;
   display: grid;
   gap: 50px 50px;
   grid-template-columns: auto auto auto;
@@ -34,30 +91,29 @@ body
   width: 11em;
 }
 
-.img-salle{
-    height: 7em;
-    width: 10em;
+.img-salle {
+  height: 7em;
+  width: 10em;
 }
 
-
-.description{
-    font-size: 12px;
-    height: 80px;
+.description {
+  font-size: 12px;
+  height: 80px;
 }
 
-.item{
-    display: inline-block;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    padding:0px 20px;
+.item {
+  display: inline-block;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 0px 20px;
 }
 
-.reserv-date{
-    width: 100%;
-    font-size: 12px;
-    text-align: left;
+.reserv-date {
+  width: 100%;
+  font-size: 12px;
+  text-align: left;
 }
 
-.line{
-    border: 1px solid rgba(119, 119, 119, 0.596);
+.line {
+  border: 1px solid rgba(119, 119, 119, 0.596);
 }

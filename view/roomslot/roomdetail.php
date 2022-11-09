@@ -7,18 +7,6 @@
     <link rel="stylesheet" href="./tpl/style2.css" />
 </head>
 <body>
-    <script>
-        function reply_click(clicked_id,clicked_id2)
-        {
-            let click = clicked_id;
-            document.cookie = "selected="+click;
-            let click2 = clicked_id2;
-            console.log(click2);
-            document.cookie = "selected2="+click2;
-            location.href = 'reserv.php';
-        }
-    </script>
-
     <div class="container">
         <div class="flexing">
             <h1 class="room_name"><?= $slot['name'] ?></h1>
@@ -58,10 +46,25 @@
                     if($cmpt != 0):
                         $cmpt = $cmpt-1;
             ?>
-            <img class="salle" onclick="reply_click(this.id,this.alt)" alt="<?= $room2['id'] ?>" id="<?= $room2['room_id'] ?>" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;cursor: pointer;" src= <?= $room2['picture_url'] ?>>
+            <a href="index.php?route=reservation&slotid=<?= $room2['id'] ?>&roomid=<?= $room2['room_id'] ?>"><img class="salle" style="height: 70%;width: 24%;display: inline-block;margin-right: 0.5%;margin-top: 10px;cursor: pointer;" src= <?= $room2['picture_url'] ?>></a>
             <?php endif;endforeach;?>
         </div>
+        <table style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;width: 100%;">
+            <tr style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;">
+                <th style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;">Pseudo</th>
+                <th style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;">Commentaires</th>
+                <th style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;">Notes</th>
+            </tr>
+            <?php 
+                foreach($comscres as $comscr):
+            ?>
+            <tr style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;">
+                <td style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;"><?= $comscr['username'] ?></td> 
+                <td style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;"><?= $comscr['comment'] ?></td> 
+                <td style="border: 2px solid rgb(0, 0, 0);border-collapse: collapse;"><?= $comscr['score'] ?></td> 
+            </tr>
+            <?php endforeach; ?>
+        </table>
     </div>
-
 </body>
 </html>
